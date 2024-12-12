@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roteiro de Viagem</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,900;1,900&family=Open+Sans&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/pt-br.js"></script>
     <script>dayjs.locale('pt-br')</script>
@@ -16,37 +20,52 @@
 
 <body>
 
-    <form onsubmit="salvarAtividade(event)"> 
+    <div id="app">
+        <form onsubmit="salvarAtividade(event)">
 
-        <div>
-            <input 
-                type="text" 
-                placeholder="Qual a atividade?" 
-                name="atividade"
-                required
-            >
-        </div>
+            <div id="place" class="card-bg">
+                <img src="/assets/img/local.png" alt="local">
 
-        <div>
-            <select name="dia">
-                <option value="2024-03-01">01 de fevereiro</option>
-            </select>
-        </div>
-
-        <div>
-            <select name="hora">
-                <option value="10:30">10:30</option>
-            </select>
-        </div>
-
-        <button type="submit">Salva atividade</button>
-
-    </form>
+                Lisboa, Portugal
+            </div>
 
 
-    <h1>Atividades</h1>
-    <section></section>
+            <div class="fields">
+                <div class="field-wrapper">
+                    <img src="/assets/img/etiqueta.png" alt="etiqueta">
+                    <input 
+                        type="text" onclick = limparCampo()
+                        placeholder="Qual a atividade?" 
+                        name="atividade"
+                        required
+                    >
+                    
+                </div>
 
-    <script src="/assets/js/scripts.js"></script>
+                <div class="field-wrapper">
+                    <img src="/assets/img/calendar.png" alt="calendario">
+                    <select name="dia">
+                        <option value="2024-12-31">31 de Dezembro</option>
+                    </select>
+                </div>
+
+                <div class="field-wrapper">
+                    <img src="/assets/img/relogio.png" alt="relogio">
+                    <select name="hora">
+                        <option value="10:30">10:30</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Salvar atividade</button>
+        </form>
+
+        <main>
+            <h1>Atividades</h1>
+            <section></section>
+        </main>
+        <script src="/assets/js/scripts.js"></script>
+    </div>
+
 </body>
 </html>

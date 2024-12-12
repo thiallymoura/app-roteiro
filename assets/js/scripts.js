@@ -1,39 +1,31 @@
 //biblioteca dayjs
-const formatador = (data) =>{
+const formatador = (data) => {
     return {
-       dia: {
-           numerico: dayjs(data).format('DD'),
-           semana: {
-               curto: dayjs(data).format('ddd'),
-               longo: dayjs(data).format('dddd'),
-           }
-        },
-       mes: dayjs(data).format('MMMM'),
-       hora: dayjs(data).format('HH:mm'),
-       
+      dia: {
+        numerico: dayjs(data).format('DD'),
+        semana: {
+          curto: dayjs(data).format('ddd'),
+          longo: dayjs(data).format('dddd'),
+        }
+      },
+      mes: dayjs(data).format('MMMM'),
+      hora: dayjs(data).format('HH:mm')
     }
-}
-
+  }
 
 const atividade = {
-    nome: "Café da manhã",
-    data: new Date("2022-04-16 08:00:00"), //new Date - cria uma data
-    finalizada: true
+    nome: "Centro Antigo",
+    data: new Date("2024-12-20 10:00:00"), //new Date - cria uma data
+    finalizada: false
 }
 
 let atividades = [
     atividade, 
     {
-        nome: "Lanche",
-        data: new Date("2022-04-16 14:00:00"),
+        nome: "Café da Manhã",
+        data: new Date("2024-12-20 08:00:00"),
         finalizada: false
     },
-    {
-        nome: "Estudos",
-        data: new Date("2022-04-16 14:00:00"),
-        finalizada: true
-    },
-
 ]
 
 //atividades = []
@@ -56,17 +48,29 @@ const criarItemDeAtividade = (atividade) =>{
     const formatar = formatador(atividade.data);
 
     return ` 
-        <div>
+        <div class="card-bg">
             ${input}
-            <span>${atividade.nome}</span>
-            <time>
-                ${formatar.dia.semana.longo},
-                dia ${formatar.dia.numerico} 
-                de ${formatar.mes}
-                às ${formatar.hora}h
-                </time> 
+
+            <div>
+                <img class="active" src="/assets/img/circle-check.png" alt="check">
+                <img class="inactive" src="/assets/img/circle-dashed.png" alt="inativo">
+                
+                <span>${atividade.nome}</span>
+            </div>
+
+            <time class="short">
+                ${formatar.dia.semana.curto}.
+                ${formatar.dia.numerico} <br>
+                ${formatar.hora}
+            </time>
+
+            <time class="full">
+                ${formatar.dia.semana.longo}, 
+                dia ${formatar.dia.numerico}
+                de ${formatar.mes} 
+                às ${formatar.hora}h </time>
         </div>
-    `
+        `
 }
 
 const atualizarListaDeAtividades = () => { //cria uma função
@@ -90,7 +94,7 @@ atualizarListaDeAtividades()
 
 
 const salvarAtividade = (event) => {
-    event.preventDefault(); //previne o comportamento padrao
+    event.preventDefault(); //previne o comportamento padrao 
     const dadosDoFormulario = new FormData(event.target); //pega os dados do formulario
 
     const nome = dadosDoFormulario.get('atividade');
@@ -117,14 +121,19 @@ const salvarAtividade = (event) => {
     atualizarListaDeAtividades()
 }
 
+function limparCampo() {
+    const campoAtividade = document.querySelector('input[name="atividade"]'); 
+    campoAtividade.value = ' ';
+}
+
 
 const criarDiasSelecao = () => {
     const dias = [
-        "2024-12-31",
-        "2025-01-01",
-        "2025-01-02",
-        "2025-01-03",
-        "2025-01-04",
+        "2024-12-20",
+        "2024-12-21",
+        "2024-12-22",
+        "2024-12-23",
+        "2024-12-24",
     ]
 
 
@@ -149,10 +158,10 @@ criarDiasSelecao()
 const criarHorasSelecao = (i) => {
     let horasDisponiveis = ' '
 
-    for(let i = 6; i < 23; i++){
+    for(let i = 8; i < 21; i++){
         const hora = String(i).padStart(2, '0') //padStart - adiciona 0 na frente
         horasDisponiveis += `<option value="${hora}:00">${hora}:00</option>`
-        horasDisponiveis += `<option value="${hora}:30">${hora}:30</option>`
+        // horasDisponiveis += `<option value="${hora}:30">${hora}:30</option>`
         
     }
 
@@ -176,3 +185,4 @@ const concluirAtividade = (event) => {
 
     atividade.finalizada = !atividade.finalizada //inverte o valor
 }
+

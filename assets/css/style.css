@@ -1,5 +1,190 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+}
+
+body, input, select, button, option{
+    font-family: 'Inter', sans-serif;
+    background: #09090B;
+    color: #F4F4FA;
+
+    line-height: 120%;
+    letter-spacing: -0.02em;
+}
+
+
+#app{
+    padding: 40px 20px;
+    max-width: 320px;
+    margin: auto;
+}
+
+#place{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 22px 16px;
+
+    font-size: 14px;
+    margin-bottom: 32px;
+    
+}
+
+input, select{
+    all: unset;
+}
+
+input, select, button{
+    width: 100%;
+}
+
+.fields{
+    display: grid;
+    gap: 8px;
+}
+
+.field-wrapper{
+    padding: 18px;
+    background-color: #09090B;
+    border: 1px solid #27272A; 
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.field-wrapper:focus-within{
+    outline: 1px solid yellowgreen;
+}
+
+button{
+    margin-top: 12px;
+    padding: 12px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #BEF264;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A2E05;
+
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #9CD83B;
+}
+
+.card-bg{
+   background: #18181B;
+
+    box-shadow: 
+        0px 8px 8px rgba(0, 0, 0, 0.1), 
+        0px 4px 4px rgba(0, 0, 0, 0.1), 
+        0px 2px 2px rgba(0, 0, 0, 0.1), 
+        0px 0px 0px 1px rgba(0, 0, 0, 0.1), 
+        inset 0px 0px 0px 1px rgba(255, 255, 255, 0.03), 
+        inset 0px 1px 0px rgba(255, 255, 255, 0.03);
+
+    border-radius: 12px;
+}
+
+main {
+    margin-top: 32px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    margin-bottom: 24px;
+}
+
+section {
+    display: grid;
+    gap: 10px;
+
+}
+
+section input[type="checkbox"]{
+    height: 100%;
+    position: absolute;
+    inset: 0;
+
+}
+
+section .card-bg{
+    position: relative;
+    padding: 10px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+section .card-bg:has(:checked) .active,
+section .card-bg .inactive{
+    display: block;
+}
+
+section .card-bg:has(:checked) .inactive,
+section .card-bg .active{
+    display: none;
+}
+
+section .card-bg > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+  
+time {
+    font-size: 14px;
+    color: #A1A1AB;
+    text-align: right;
+}
+  
+time.full {
+    display: none;
+}
+  
+@media (width > 1024px) {
+    #app {
+      display: flex;
+      max-width: 960px;
+      gap: 32px;
+    }
+  
+    main {
+      margin-top: 0;
+      flex: 1;
+    }
+  
+    h1 {
+      text-align: left;
+    }
+  
+    time.full {
+      display: block;
+    }
+
+    time.short{
+        display: none;
+    }
+}
+
+section .card-bg {
+    animation: appear 300ms;
+  }
+  
+@keyframes appear {
+    from {
+      opacity: 0;
+    }
 }
